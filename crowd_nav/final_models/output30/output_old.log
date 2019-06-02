@@ -1,0 +1,116 @@
+2019-06-01 14:11:14, INFO: Using device: cuda:0
+2019-06-01 14:15:04, INFO: Policy: FROZEN 
+2019-06-01 14:15:04, INFO: human number: 5
+2019-06-01 14:15:04, INFO: Not randomize human's radius and preferred speed
+2019-06-01 14:15:04, INFO: Training simulation: circle_crossing, test simulation: circle_crossing
+2019-06-01 14:15:04, INFO: Square width: 10.0, circle width: 4.0
+2019-06-01 14:15:04, INFO: Starting imitation learning on 10000 training episodes and 10 validation episodes
+2019-06-01 14:15:04, INFO: Current learning rate: 0.005000
+2019-06-01 14:19:15, INFO: TRAIN has success rate: 1.00, collision rate: 0.00, nav time: 9.98, total reward: 0.6676
+2019-06-01 14:27:47, DEBUG: Average loss on validation set on epoch 00, iter 100000: 3.70E-03
+2019-06-01 14:27:47, DEBUG: Average loss on test set on epoch 00, iter 100000: 1.50E-02
+2019-06-01 14:36:11, DEBUG: Average loss on validation set on epoch 01, iter 100000: 2.03E-03
+2019-06-01 14:36:11, DEBUG: Average loss on test set on epoch 01, iter 100000: 1.81E-03
+2019-06-01 14:42:44, DEBUG: Average loss on validation set on epoch 02, iter 100000: 1.68E-03
+2019-06-01 14:42:44, DEBUG: Average loss on test set on epoch 02, iter 100000: 1.42E-03
+2019-06-01 14:49:19, DEBUG: Average loss on validation set on epoch 03, iter 100000: 2.04E-03
+2019-06-01 14:49:19, DEBUG: Average loss on test set on epoch 03, iter 100000: 1.31E-03
+2019-06-01 14:55:56, DEBUG: Average loss on validation set on epoch 04, iter 100000: 1.85E-03
+2019-06-01 14:55:56, DEBUG: Average loss on test set on epoch 04, iter 100000: 1.23E-03
+2019-06-01 15:02:31, DEBUG: Average loss on validation set on epoch 05, iter 100000: 1.52E-03
+2019-06-01 15:02:31, DEBUG: Average loss on test set on epoch 05, iter 100000: 1.17E-03
+2019-06-01 15:09:08, DEBUG: Average loss on validation set on epoch 06, iter 100000: 1.65E-03
+2019-06-01 15:09:08, DEBUG: Average loss on test set on epoch 06, iter 100000: 1.13E-03
+2019-06-01 15:15:47, DEBUG: Average loss on validation set on epoch 07, iter 100000: 1.57E-03
+2019-06-01 15:15:47, DEBUG: Average loss on test set on epoch 07, iter 100000: 1.09E-03
+2019-06-01 15:22:21, DEBUG: Average loss on validation set on epoch 08, iter 100000: 1.55E-03
+2019-06-01 15:22:21, DEBUG: Average loss on test set on epoch 08, iter 100000: 1.06E-03
+2019-06-01 15:28:54, DEBUG: Average loss on validation set on epoch 09, iter 100000: 1.45E-03
+2019-06-01 15:28:54, DEBUG: Average loss on test set on epoch 09, iter 100000: 1.03E-03
+2019-06-01 15:35:27, DEBUG: Average loss on validation set on epoch 10, iter 100000: 1.40E-03
+2019-06-01 15:35:27, DEBUG: Average loss on test set on epoch 10, iter 100000: 1.01E-03
+2019-06-01 15:41:58, DEBUG: Average loss on validation set on epoch 11, iter 100000: 1.63E-03
+2019-06-01 15:41:58, DEBUG: Average loss on test set on epoch 11, iter 100000: 9.89E-04
+2019-06-01 15:48:30, DEBUG: Average loss on validation set on epoch 12, iter 100000: 1.51E-03
+2019-06-01 15:48:30, DEBUG: Average loss on test set on epoch 12, iter 100000: 9.61E-04
+2019-06-01 15:55:03, DEBUG: Average loss on validation set on epoch 13, iter 100000: 1.45E-03
+2019-06-01 15:55:03, DEBUG: Average loss on test set on epoch 13, iter 100000: 9.45E-04
+2019-06-01 16:01:34, DEBUG: Average loss on validation set on epoch 14, iter 100000: 1.60E-03
+2019-06-01 16:01:34, DEBUG: Average loss on test set on epoch 14, iter 100000: 9.28E-04
+2019-06-01 16:08:09, DEBUG: Average loss on validation set on epoch 15, iter 100000: 1.41E-03
+2019-06-01 16:08:09, DEBUG: Average loss on test set on epoch 15, iter 100000: 9.10E-04
+2019-06-01 16:14:45, DEBUG: Average loss on validation set on epoch 16, iter 100000: 1.41E-03
+2019-06-01 16:14:45, DEBUG: Average loss on test set on epoch 16, iter 100000: 8.96E-04
+2019-06-01 16:21:17, DEBUG: Average loss on validation set on epoch 17, iter 100000: 1.45E-03
+2019-06-01 16:21:17, DEBUG: Average loss on test set on epoch 17, iter 100000: 8.75E-04
+2019-06-01 16:27:47, DEBUG: Average loss on validation set on epoch 18, iter 100000: 1.34E-03
+2019-06-01 16:27:47, DEBUG: Average loss on test set on epoch 18, iter 100000: 8.64E-04
+2019-06-01 16:34:20, DEBUG: Average loss on validation set on epoch 19, iter 100000: 1.38E-03
+2019-06-01 16:34:20, DEBUG: Average loss on test set on epoch 19, iter 100000: 8.53E-04
+2019-06-01 16:40:55, DEBUG: Average loss on validation set on epoch 20, iter 100000: 1.49E-03
+2019-06-01 16:40:55, DEBUG: Average loss on test set on epoch 20, iter 100000: 8.41E-04
+2019-06-01 16:47:32, DEBUG: Average loss on validation set on epoch 21, iter 100000: 1.38E-03
+2019-06-01 16:47:32, DEBUG: Average loss on test set on epoch 21, iter 100000: 8.25E-04
+2019-06-01 16:54:03, DEBUG: Average loss on validation set on epoch 22, iter 100000: 1.30E-03
+2019-06-01 16:54:03, DEBUG: Average loss on test set on epoch 22, iter 100000: 8.13E-04
+2019-06-01 17:00:33, DEBUG: Average loss on validation set on epoch 23, iter 100000: 1.35E-03
+2019-06-01 17:00:33, DEBUG: Average loss on test set on epoch 23, iter 100000: 8.11E-04
+2019-06-01 17:07:03, DEBUG: Average loss on validation set on epoch 24, iter 100000: 1.28E-03
+2019-06-01 17:07:03, DEBUG: Average loss on test set on epoch 24, iter 100000: 7.96E-04
+2019-06-01 17:13:34, DEBUG: Average loss on validation set on epoch 25, iter 100000: 1.43E-03
+2019-06-01 17:13:34, DEBUG: Average loss on test set on epoch 25, iter 100000: 7.93E-04
+2019-06-01 17:20:04, DEBUG: Average loss on validation set on epoch 26, iter 100000: 1.66E-03
+2019-06-01 17:20:04, DEBUG: Average loss on test set on epoch 26, iter 100000: 7.78E-04
+2019-06-01 17:26:36, DEBUG: Average loss on validation set on epoch 27, iter 100000: 1.18E-03
+2019-06-01 17:26:36, DEBUG: Average loss on test set on epoch 27, iter 100000: 7.75E-04
+2019-06-01 17:33:07, DEBUG: Average loss on validation set on epoch 28, iter 100000: 1.44E-03
+2019-06-01 17:33:07, DEBUG: Average loss on test set on epoch 28, iter 100000: 7.64E-04
+2019-06-01 17:39:38, DEBUG: Average loss on validation set on epoch 29, iter 100000: 1.44E-03
+2019-06-01 17:39:38, DEBUG: Average loss on test set on epoch 29, iter 100000: 7.50E-04
+2019-06-01 17:46:10, DEBUG: Average loss on validation set on epoch 30, iter 100000: 1.77E-03
+2019-06-01 17:46:10, DEBUG: Average loss on test set on epoch 30, iter 100000: 7.45E-04
+2019-06-01 17:52:44, DEBUG: Average loss on validation set on epoch 31, iter 100000: 1.20E-03
+2019-06-01 17:52:44, DEBUG: Average loss on test set on epoch 31, iter 100000: 7.43E-04
+2019-06-01 17:59:19, DEBUG: Average loss on validation set on epoch 32, iter 100000: 1.24E-03
+2019-06-01 17:59:19, DEBUG: Average loss on test set on epoch 32, iter 100000: 7.28E-04
+2019-06-01 18:05:57, DEBUG: Average loss on validation set on epoch 33, iter 100000: 1.21E-03
+2019-06-01 18:05:57, DEBUG: Average loss on test set on epoch 33, iter 100000: 7.25E-04
+2019-06-01 18:12:33, DEBUG: Average loss on validation set on epoch 34, iter 100000: 1.14E-03
+2019-06-01 18:12:33, DEBUG: Average loss on test set on epoch 34, iter 100000: 7.28E-04
+2019-06-01 18:19:14, DEBUG: Average loss on validation set on epoch 35, iter 100000: 1.25E-03
+2019-06-01 18:19:14, DEBUG: Average loss on test set on epoch 35, iter 100000: 7.21E-04
+2019-06-01 18:25:47, DEBUG: Average loss on validation set on epoch 36, iter 100000: 1.16E-03
+2019-06-01 18:25:47, DEBUG: Average loss on test set on epoch 36, iter 100000: 7.17E-04
+2019-06-01 18:32:22, DEBUG: Average loss on validation set on epoch 37, iter 100000: 1.12E-03
+2019-06-01 18:32:22, DEBUG: Average loss on test set on epoch 37, iter 100000: 7.05E-04
+2019-06-01 18:38:57, DEBUG: Average loss on validation set on epoch 38, iter 100000: 1.26E-03
+2019-06-01 18:38:57, DEBUG: Average loss on test set on epoch 38, iter 100000: 7.01E-04
+2019-06-01 18:45:30, DEBUG: Average loss on validation set on epoch 39, iter 100000: 1.40E-03
+2019-06-01 18:45:30, DEBUG: Average loss on test set on epoch 39, iter 100000: 6.94E-04
+2019-06-01 18:52:05, DEBUG: Average loss on validation set on epoch 40, iter 100000: 1.22E-03
+2019-06-01 18:52:05, DEBUG: Average loss on test set on epoch 40, iter 100000: 6.82E-04
+2019-06-01 18:58:39, DEBUG: Average loss on validation set on epoch 41, iter 100000: 1.13E-03
+2019-06-01 18:58:39, DEBUG: Average loss on test set on epoch 41, iter 100000: 6.76E-04
+2019-06-01 19:05:11, DEBUG: Average loss on validation set on epoch 42, iter 100000: 1.08E-03
+2019-06-01 19:05:11, DEBUG: Average loss on test set on epoch 42, iter 100000: 6.74E-04
+2019-06-01 19:11:48, DEBUG: Average loss on validation set on epoch 43, iter 100000: 1.23E-03
+2019-06-01 19:11:48, DEBUG: Average loss on test set on epoch 43, iter 100000: 6.73E-04
+2019-06-01 19:18:23, DEBUG: Average loss on validation set on epoch 44, iter 100000: 1.28E-03
+2019-06-01 19:18:23, DEBUG: Average loss on test set on epoch 44, iter 100000: 6.67E-04
+2019-06-01 19:25:00, DEBUG: Average loss on validation set on epoch 45, iter 100000: 1.26E-03
+2019-06-01 19:25:00, DEBUG: Average loss on test set on epoch 45, iter 100000: 6.61E-04
+2019-06-01 19:31:39, DEBUG: Average loss on validation set on epoch 46, iter 100000: 1.23E-03
+2019-06-01 19:31:39, DEBUG: Average loss on test set on epoch 46, iter 100000: 6.66E-04
+2019-06-01 19:38:17, DEBUG: Average loss on validation set on epoch 47, iter 100000: 1.45E-03
+2019-06-01 19:38:17, DEBUG: Average loss on test set on epoch 47, iter 100000: 6.50E-04
+2019-06-01 19:44:53, DEBUG: Average loss on validation set on epoch 48, iter 100000: 1.61E-03
+2019-06-01 19:44:53, DEBUG: Average loss on test set on epoch 48, iter 100000: 6.55E-04
+2019-06-01 19:51:31, DEBUG: Average loss on validation set on epoch 49, iter 100000: 1.11E-03
+2019-06-01 19:51:31, DEBUG: Average loss on test set on epoch 49, iter 100000: 6.48E-04
+2019-06-01 19:51:31, INFO: Finish imitation learning. Weights saved.
+2019-06-01 19:51:31, INFO: Experience train_set size: 100000/100000
+2019-06-01 19:51:31, INFO: Experience validation_set size: 378/100000
+2019-06-01 19:51:31, INFO: Agent is visible and has holonomic kinematic constraint
+2019-06-01 19:51:31, INFO: Current learning rate: 0.001000
+2019-06-01 19:51:31, INFO: VAL   in episode 0 has success rate: 1.00, collision rate: 0.00, nav time: 10.20, total reward: 0.6905
+2019-06-01 19:51:31, INFO: Frequency of being in danger: 2.98 and average min separate distance in danger: 0.07
