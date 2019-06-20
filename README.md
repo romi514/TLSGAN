@@ -65,14 +65,14 @@ The output is by default put in the data folder. You can find the used configs, 
 
 
 ## Simulation Videos
-CADRL             | LSTM-RL
+ORCA             | Pretrained
 :-------------------------:|:-------------------------:
-<img src="https://i.imgur.com/vrWsxPM.gif" width="400" />|<img src="https://i.imgur.com/6gjT0nG.gif" width="400" />
-SARL             |  OM-SARL
-<img src="https://i.imgur.com/rUtAGVP.gif" width="400" />|<img src="https://i.imgur.com/UXhcvZL.gif" width="400" />
+<img src="images/Pretrained/ORCA.gif" width="400" />|<img src="images/Pretrained/15000.gif" width="400" />
+Frozen             |  Random
+<img src="images/Frozen/15000.gif" width="400" />|<img src="images/Random/15000.gif" width="400" />
 
 
 ## Learning Curve
-Learning curve comparison between different methods in invisible setting.
+Learning curve comparison between different learning settings.
 
-<img src="https://i.imgur.com/l5UC3qa.png" width="600" />
+<img src="images/learning_curves.png" width="600" />
