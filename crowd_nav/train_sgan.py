@@ -12,10 +12,10 @@ import gym
 sys.path.append('/Users/romain/Desktop/MasterCourseProjects/VITA_Project/sgan/')
 
 
-from crowd_sim.envs.utils.robot import TrajRobot
-from crowd_nav.utils.trainer import TrajTrainer, Trainer
+from crowd_sim.envs.utils.robot import Robot
+from crowd_nav.utils.trainer import Trainer
 from crowd_nav.utils.memory import ReplayMemory
-from crowd_nav.utils.explorer import Traj_Explorer, Explorer
+from crowd_nav.utils.explorer import Explorer
 from crowd_nav.policy.policy_factory import policy_factory
 from crowd_nav.policy.tlsgan import TLSGAN
 from crowd_sim.envs.policy.orca import ORCA
@@ -86,6 +86,7 @@ def main():
 
     mode = 'a' if args.resume else 'w'
     logger = logging.getLogger('train_sgan')
+    logger.propogate = False
     level = logging.INFO if not args.debug else logging.DEBUG
     logger.setLevel(level)
     file_handler = logging.FileHandler(log_file, mode=mode)
@@ -99,12 +100,11 @@ def main():
     logger.addHandler(stdout_handler)
 
     device = torch.device("cuda:0" if torch.cuda.is_available() and args.gpu else "cpu")
-    logger.info('Using device: %s', device)
 
 
     ########## CONFIGURE POLICY ##########
 
-    policy = SGAN(device)
+    policy = TLSGAN(device,logger)
     if args.policy_config is None:
         parser.error('Policy config has to be specified for a trainable network')
     policy_config = configparser.RawConfigParser()
@@ -114,15 +114,16 @@ def main():
     policy.set_device(device)
 
 
-    # configure environment
+    ########## CONFIGURE ENVIRONMENT ##########
+
     env_config = configparser.RawConfigParser()
     env_config.read(args.env_config)
     env = gym.make('CrowdSim-v0')
-    env.configure(env_config)
-    robot = TrajRobot(env_config, 'robot')
+    env.configure(env_config)    
+    robot = Robot(env_config, 'robot')
     env.set_robot(robot)
 
-    # read training parameters
+    ########## READ RL PARAMETERS ##########
     if args.train_config is None:
         parser.error('Train config has to be specified for a trainable network')
     train_config = configparser.RawConfigParser()
@@ -139,17 +140,18 @@ def main():
     epsilon_decay = train_config.getfloat('train', 'epsilon_decay')
     checkpoint_interval = train_config.getint('train', 'checkpoint_interval')
 
-    # configure trainer and explorer
+    ########## CONFIGURE MEMORY, TRAINER, EXPLORER ##########
     train_memory = ReplayMemory(capacity)
     val_memory = ReplayMemory(capacity)
     model = policy.get_model()
     batch_size = train_config.getint('trainer', 'batch_size')
-    trainer = TrajTrainer(model, train_memory, val_memory, device, batch_size, args.output_dir, logger)
-    #trainer = Trainer(model, train_memory, device, batch_size)
-    explorer = Traj_Explorer(env, robot, policy.policy_learning, device, train_memory, val_memory, policy.gamma,logger, target_policy=policy, obs_len = policy.obs_len)
-    #explorer = Explorer(env, robot, device, train_memory, policy.gamma, target_policy=policy)
+    trainer = Trainer(model, train_memory, val_memory, device, batch_size, args.output_dir, logger)
+    explorer = Explorer(env, robot, policy.policy_learning, device, train_memory, val_memory, policy.gamma,logger, policy, policy.obs_len)
 
-    # Resume
+    logger.info('Using device: %s', device)
+
+
+    ########## IMITATION LEARNING ##########
     if args.resume:
         if not os.path.exists(rl_weight_file):
             logger.error('RL weights does not exist')
@@ -157,7 +159,8 @@ def main():
         rl_weight_file = os.path.join(args.output_dir, 'resumed_rl_model.pth')
         logger.info('Load reinforcement learning trained weights. Resume training')
     elif os.path.exists(il_weight_file):
-        model.load_state_dict(torch.load(il_weight_file, map_location=device))
+        model.load_state_dict(torch.load(il_weight_file, map_location=device),strict=False)
+
         logger.info('Load imitation learning trained weights.')
         if robot.visible:
             safety_space = 0
@@ -167,17 +170,19 @@ def main():
         il_policy = policy_factory[il_policy]()
         il_policy.multiagent_training = policy.multiagent_training
         il_policy.safety_space = safety_space
-        #robot.set_policy(il_policy)
         robot.set_test_policy(il_policy)
         robot.set_policy(policy)
         policy.set_env(env)
         robot.policy.set_epsilon(epsilon_end)
 
-        #explorer.run_k_episodes(1000, 'train', update_memory=True, imitation_learning=True, with_render = False)
-        explorer.run_k_episodes(200, 0, 'val', update_memory=True, imitation_learning=True, with_render = True)
+        explorer.run_k_episodes(100, 0, 'val', update_memory=True, imitation_learning=True, with_render = False)
+        explorer.run_k_episodes(100, 0, 'val', update_memory=True, imitation_learning=True, with_render = False)
+        explorer.run_k_episodes(100, 0, 'val', update_memory=True, imitation_learning=True, with_render = False)
+        explorer.run_k_episodes(100, 0, 'val', update_memory=True, imitation_learning=True, with_render = False)
+        explorer.run_k_episodes(100, 0, 'val', update_memory=True, imitation_learning=True, with_render = False)
+
         logger.info('Experience training set size: %d/%d', len(train_memory), train_memory.capacity)
     else:
-    # Imitation learrning
         train_episodes = train_config.getint('imitation_learning', 'train_episodes')
         validation_episodes = train_config.getint('imitation_learning', 'validation_episodes')
         logger.info('Starting imitation learning on %d training episodes and %d validation episodes',train_episodes,validation_episodes)
@@ -195,16 +200,16 @@ def main():
         il_policy.safety_space = safety_space
         robot.set_test_policy(il_policy)
         robot.set_policy(il_policy)
-        robot.set_policy(policy)
-        robot.policy.set_epsilon(epsilon_end)
         explorer.run_k_episodes(train_episodes, validation_episodes, 'train', update_memory=True, imitation_learning=True, with_render=False)
-        trainer.optimize_epoch(il_epochs, robot, with_validation = True)
-        #trainer.optimize_batch(30)
+        trainer.optimize_epoch_il(il_epochs, robot, with_validation = True)
         torch.save(model.state_dict(), il_weight_file)
         logger.info('Finish imitation learning. Weights saved.')
         logger.info('Experience train_set size: %d/%d', len(train_memory), train_memory.capacity)
         logger.info('Experience validation_set size: %d/%d', len(val_memory), val_memory.capacity)
-    # Reinforcement learning
+
+    ########## REINFORCEMENT LEARNING ##########
+    raise NotImplementedError
+
     policy.set_env(env)
     robot.set_policy(policy)
 
@@ -214,7 +219,11 @@ def main():
     explorer.update_target_model(model)
     robot.policy.set_epsilon(epsilon_end)
 
-    episode = 0
+    rl_memory = ReplayMemory(capacity)
+    explorer.train_memory = rl_memory
+    trainer.train_memory = rl_memory
+
+    episode = 0    
     while episode < train_episodes:
         if args.resume:
             epsilon = epsilon_end
@@ -231,7 +240,9 @@ def main():
 
         # sample k episodes into memory and optimize over the generated memory
         explorer.run_k_episodes(sample_episodes, 0, 'train', update_memory=True, episode=episode)
-        trainer.optimize_batch(train_batches)
+        trainer.optimize_batch_rl(train_batches)
+        rl_memory.clear()
+
         episode += 1
 
         if episode % target_update_interval == 0:
